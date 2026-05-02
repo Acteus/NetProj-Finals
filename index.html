@@ -309,11 +309,39 @@
   <div class="section-header">
     <div class="part-label">Part 5</div>
     <h2 class="section-title">Threat &amp; Risk Matrix</h2>
-    <p class="section-desc">
-      Identified threats mapped to likelihood, potential impact, and the specific security controls
-      deployed to mitigate them. Each group member should be prepared to discuss any row in depth.
-    </p>
+    <p class="section-desc">Eight identified threats assessed by likelihood, impact, and overall risk level &mdash; each mapped to its mitigating controls.</p>
   </div>
+
+  <!-- Risk Heat Map -->
+  <h3 class="sub-heading">Risk Heat Map</h3>
+  <div class="risk-matrix-wrap">
+    <div class="rm-ylabel">Impact</div>
+    <div class="risk-matrix">
+      <!-- column headers -->
+      <div class="rm-corner"></div>
+      <div class="rm-hdr">Low</div>
+      <div class="rm-hdr">Medium</div>
+      <div class="rm-hdr">High</div>
+      <!-- Critical row -->
+      <div class="rm-rhdr">Critical</div>
+      <div class="rm-cell rm-med"></div>
+      <div class="rm-cell rm-high">Lateral Movement<br>Data Exfiltration</div>
+      <div class="rm-cell rm-crit">External Intrusion<br>Ransomware</div>
+      <!-- High row -->
+      <div class="rm-rhdr">High</div>
+      <div class="rm-cell rm-low">Insider Threat</div>
+      <div class="rm-cell rm-med">Unauth. Cloud Access</div>
+      <div class="rm-cell rm-high">Phishing / Social Eng.</div>
+      <!-- Medium row -->
+      <div class="rm-rhdr">Medium</div>
+      <div class="rm-cell rm-low">Guest Network Pivot</div>
+      <div class="rm-cell rm-low"></div>
+      <div class="rm-cell rm-med"></div>
+    </div>
+    <div class="rm-xlabel">Likelihood &rarr;</div>
+  </div>
+
+  <h3 class="sub-heading">Threat Register</h3>
   <div class="table-wrap">
     <table id="threatsTable">
       <thead>
@@ -321,6 +349,7 @@
           <th>Threat</th>
           <th>Likelihood</th>
           <th>Impact</th>
+          <th>Risk Level</th>
           <th>Mitigating Control(s)</th>
         </tr>
       </thead>
@@ -417,13 +446,23 @@ IMPL_STEPS.forEach((p, i) => {
 const threatsBody = document.getElementById('threatsBody');
 const likeliBadge = { High: 'badge-high', Medium: 'badge-medium', Low: 'badge-low' };
 const impactBadge = { Critical: 'badge-critical', High: 'badge-high', Medium: 'badge-medium', Low: 'badge-low' };
+const riskMap = {
+  'High:Critical': { label: 'Critical', cls: 'badge-critical' },
+  'High:High':     { label: 'High',     cls: 'badge-high' },
+  'Medium:Critical':{ label: 'High',    cls: 'badge-high' },
+  'Medium:High':   { label: 'Medium',   cls: 'badge-medium' },
+  'Low:High':      { label: 'Medium',   cls: 'badge-medium' },
+  'Low:Medium':    { label: 'Low',      cls: 'badge-low' },
+};
 THREATS.forEach(t => {
+  const risk = riskMap[`${t.likelihood}:${t.impact}`] || { label: 'Medium', cls: 'badge-medium' };
   threatsBody.innerHTML += `
     <tr>
-      <td style="font-weight:600">${t.threat}</td>
+      <td><strong>${t.threat}</strong></td>
       <td><span class="badge ${likeliBadge[t.likelihood]}">${t.likelihood}</span></td>
       <td><span class="badge ${impactBadge[t.impact]}">${t.impact}</span></td>
-      <td style="color:var(--text-secondary)">${t.control}</td>
+      <td><span class="badge ${risk.cls}">${risk.label}</span></td>
+      <td>${t.control}</td>
     </tr>`;
 });
 
