@@ -146,10 +146,7 @@
   <div class="section-header">
     <div class="part-label">Part 3</div>
     <h2 class="section-title">Network Security Architecture Document</h2>
-    <p class="section-desc">
-      Formal documentation mirroring enterprise "living documentation" standards,
-      covering all required sections for a production-grade security architecture.
-    </p>
+    <p class="section-desc">All 6 required sections of the formal architecture document.</p>
   </div>
 
   <div class="doc-grid">
@@ -168,66 +165,51 @@
       <div class="doc-card-num">§ 2 — Network Topology</div>
       <div class="doc-card-title">Physical &amp; Logical Layout</div>
       <div class="doc-card-body">
-        Traffic enters through an external firewall/IPS, reaches the DMZ (Web/Reverse Proxy),
-        then passes a second internal firewall to reach the core switch. The core switch routes
-        tagged VLAN traffic to four segments: Internal (VLAN 20), Restricted (VLAN 30),
-        Management (VLAN 40), and Guest (VLAN 50). A VPN gateway connects on-prem to AWS VPC
-        via an IPSec tunnel.
+        Traffic enters through an external firewall/IPS and branches three ways: public requests
+        reach the DMZ only; internal users pass a second firewall to the core switch and their
+        VLAN (20 Internal, 30 Restricted, 40 Mgmt, 50 Guest); cloud traffic is tunnelled via
+        IPSec VPN to AWS VPC.
       </div>
     </div>
     <div class="doc-card">
       <div class="doc-card-num">§ 3 — Security Zones &amp; Trust</div>
       <div class="doc-card-title">Zone Trust Model</div>
       <div class="doc-card-body">
-        Zero-trust model applied between zones: all inter-zone traffic is denied by default.
-        The Restricted Network (VLAN 30) carries the highest trust requirement — only role-authorized
-        users may access it after MFA. The Guest Network (VLAN 50) is fully isolated, routing
-        internet-only through a captive portal with no path to internal segments.
-      </div>
-    </div>
-    <div class="doc-card">
-      <div class="doc-card-num">§ 5 — Controls &amp; Mitigations</div>
-      <div class="doc-card-title">Security Control Summary</div>
-      <div class="doc-card-body">
-        Eight security controls are deployed in combination: Perimeter Firewall, IDS/IPS,
-        VLAN Segmentation, VPN, ACLs, MFA, RBAC, and SIEM. Each addresses one or more
-        identified risks. Controls are layered so that failure of a single control does not
-        result in a full breach — a principle of defense-in-depth.
-      </div>
-    </div>
-    <div class="doc-card">
-      <div class="doc-card-num">§ 6 — Assumptions &amp; Limitations</div>
-      <div class="doc-card-title">Scope Boundaries</div>
-      <div class="doc-card-body">
-        This architecture assumes no actual production deployment is performed. Packet Tracer
-        or Draw.io diagrams serve as simulation artifacts. Physical hardware selection
-        (specific firewall model, switch SKU) is out of scope. Penetration testing and
-        active exploit validation are excluded per project requirements.
+        Zero-trust between zones: all inter-zone traffic denied by default. Restricted Network
+        (VLAN 30) requires MFA and role authorization. Guest Network (VLAN 50) is fully isolated
+        — internet-only via captive portal, no path to any internal segment.
       </div>
     </div>
     <div class="doc-card">
       <div class="doc-card-num">§ 4 — Threats &amp; Risks</div>
       <div class="doc-card-title">Risk Register Overview</div>
       <div class="doc-card-body">
-        Key identified threats include external intrusion, phishing attacks, lateral movement
-        post-breach, ransomware, data exfiltration, and unauthorized cloud access. Each threat
-        is assessed for likelihood and impact, then mapped to one or more mitigating security
-        controls deployed within the architecture (see Part 5 — Threat Matrix).
+        Key identified threats: external intrusion, phishing, lateral movement, ransomware,
+        data exfiltration, and unauthorized cloud access. Each is assessed for likelihood and
+        impact, then mapped to one or more mitigating controls (see Part 5 — Threat Matrix).
+      </div>
+    </div>
+    <div class="doc-card">
+      <div class="doc-card-num">§ 5 — Controls &amp; Mitigations</div>
+      <div class="doc-card-title">Security Control Summary</div>
+      <div class="doc-card-body">
+        Eight controls deployed in layers: Perimeter Firewall, IDS/IPS, VLAN Segmentation,
+        VPN, ACLs, MFA, RBAC, and SIEM. Layered so that failure of any single control does
+        not result in a full breach — defense-in-depth principle.
       </div>
     </div>
   </div>
 
-  <!-- Assumptions list -->
-  <div class="part-label" style="margin-top:36px;margin-bottom:14px">§ 6 — Assumptions &amp; Limitations (Detail)</div>
+  <h3 class="sub-heading" style="margin-top:36px">§ 6 — Assumptions &amp; Limitations</h3>
   <div class="assumption-list">
-    <div class="assumption-item"><span class="assumption-icon">+</span>The organization uses Active Directory (or equivalent LDAP) for identity management.</div>
-    <div class="assumption-item"><span class="assumption-icon">+</span>All endpoints run an organization-managed OS image with up-to-date patches.</div>
-    <div class="assumption-item"><span class="assumption-icon">+</span>Cloud workloads are hosted on AWS; architecture adapts to GCP/Azure with minor changes.</div>
-    <div class="assumption-item"><span class="assumption-icon">+</span>Physical cabling and hardware procurement is handled separately by IT operations.</div>
-    <div class="assumption-item"><span class="assumption-icon">~</span>Actual firewall rule tuning requires live traffic baseline — default rules are conservative.</div>
-    <div class="assumption-item"><span class="assumption-icon">~</span>SIEM alert tuning will generate false positives initially; a 2-week baselining period is expected.</div>
-    <div class="assumption-item"><span class="assumption-icon">—</span>No penetration testing or active exploitation is performed as part of this project.</div>
-    <div class="assumption-item"><span class="assumption-icon">—</span>Physical security controls (badge access, CCTV, server room locks) are out of scope.</div>
+    <div class="assumption-item"><span class="assump-tag assump-yes">Assumed</span>The organization uses Active Directory (or equivalent LDAP) for identity management.</div>
+    <div class="assumption-item"><span class="assump-tag assump-yes">Assumed</span>All endpoints run an organization-managed OS image with up-to-date patches.</div>
+    <div class="assumption-item"><span class="assump-tag assump-yes">Assumed</span>Cloud workloads are hosted on AWS; architecture adapts to GCP/Azure with minor changes.</div>
+    <div class="assumption-item"><span class="assump-tag assump-yes">Assumed</span>Physical cabling and hardware procurement is handled separately by IT operations.</div>
+    <div class="assumption-item"><span class="assump-tag assump-warn">Caveat</span>Firewall rule tuning requires a live traffic baseline — default rules are conservative until then.</div>
+    <div class="assumption-item"><span class="assump-tag assump-warn">Caveat</span>SIEM alert tuning will produce false positives initially; a 2-week baselining period is expected.</div>
+    <div class="assumption-item"><span class="assump-tag assump-no">Out of Scope</span>No penetration testing or active exploitation is performed as part of this project.</div>
+    <div class="assumption-item"><span class="assump-tag assump-no">Out of Scope</span>Physical security controls (badge access, CCTV, server room locks) are excluded.</div>
   </div>
 </section>
 
