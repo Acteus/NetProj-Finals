@@ -243,9 +243,9 @@ body {
 .diagram-body { display: flex; min-height: 0; }
 #network {
   flex: 1;
-  height: 480px;
-  min-height: 480px;
-  max-height: 480px;
+  height: 580px;
+  min-height: 580px;
+  max-height: 580px;
   background: rgba(0,0,0,0.2);
   overflow: hidden;
   position: relative;

@@ -11,7 +11,7 @@
   }));
 
   const pad = 52;
-  const nodeR = 32;
+  const nodeR = 26;
   let W = 800, H = 500;
 
   function measure() {
@@ -67,7 +67,9 @@
   const linkLblSel = vp.append('g').selectAll('text').data(linkData).join('text')
     .attr('dy', -6).attr('text-anchor', 'middle')
     .style('font-size', '10px').style('fill', '#4d6477')
-    .style('pointer-events', 'none').text(d => d.label);
+    .style('pointer-events', 'none')
+    .style('opacity', 0)
+    .text(d => d.label);
 
   // Nodes
   const nodeSel = vp.append('g').selectAll('g.node').data(nodeData).join('g')
@@ -174,6 +176,7 @@
       .attr('stroke', l => (l.source.id === d.id || l.target.id === d.id) ? d.color : '#1e3a52')
       .attr('stroke-opacity', l => (l.source.id === d.id || l.target.id === d.id) ? 1 : 0.3)
       .attr('stroke-width', l => (l.source.id === d.id || l.target.id === d.id) ? 2.5 : 1.5);
+    linkLblSel.style('opacity', l => (l.source.id === d.id || l.target.id === d.id) ? 1 : 0);
     nodeSel.attr('opacity', n => (n.id === d.id || linkData.some(l =>
       (l.source.id === d.id && l.target.id === n.id) || (l.target.id === d.id && l.source.id === n.id)
     )) ? 1 : 0.3);
@@ -181,6 +184,7 @@
 
   nodeSel.on('mouseout', () => {
     linkSel.attr('stroke', '#1e3a52').attr('stroke-opacity', 0.9).attr('stroke-width', 1.5);
+    linkLblSel.style('opacity', 0);
     nodeSel.attr('opacity', 1);
   });
 
