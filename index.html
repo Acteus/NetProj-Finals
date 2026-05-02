@@ -149,21 +149,56 @@
     <p class="section-desc">All 6 required sections of the formal architecture document.</p>
   </div>
 
+  <!-- Defense-in-Depth Visual -->
+  <h3 class="sub-heading">Defense-in-Depth Architecture</h3>
+  <div class="depth-viz" role="img" aria-label="Security layers from Internet to Restricted Network">
+    <div class="dv-zone" style="--zc:#ef4444">
+      <div class="dv-cat">Untrusted</div>
+      <div class="dv-name">Internet</div>
+    </div>
+    <div class="dv-gate">Firewall<br>+ IPS</div>
+    <div class="dv-zone" style="--zc:#f97316">
+      <div class="dv-cat">Semi-Trusted</div>
+      <div class="dv-name">DMZ</div>
+      <div class="dv-sub">Web / Proxy</div>
+    </div>
+    <div class="dv-gate">Internal FW<br>+ ACLs</div>
+    <div class="dv-zone" style="--zc:#3b82f6">
+      <div class="dv-cat">Trusted</div>
+      <div class="dv-name">Core Network</div>
+      <div class="dv-sub">VLANs 20/40/50</div>
+    </div>
+    <div class="dv-gate">VLAN<br>+ MFA</div>
+    <div class="dv-zone" style="--zc:#a855f7">
+      <div class="dv-cat">Restricted</div>
+      <div class="dv-name">HR / Finance</div>
+      <div class="dv-sub">VLAN 30 · RBAC</div>
+    </div>
+    <div class="dv-gate">VPN<br>Tunnel</div>
+    <div class="dv-zone" style="--zc:#0ea5e9">
+      <div class="dv-cat">Hybrid Cloud</div>
+      <div class="dv-name">AWS VPC</div>
+      <div class="dv-sub">Sec. Groups</div>
+    </div>
+  </div>
+
   <div class="doc-grid">
-    <div class="doc-card">
-      <div class="doc-card-num">§ 1 — Executive Summary</div>
+    <div class="doc-card" style="--ac:#00d4ff">
+      <div class="doc-card-num">&sect; 1 &mdash; Executive Summary</div>
       <div class="doc-card-title">Overview &amp; Objectives</div>
+      <div class="doc-bg-num">1</div>
       <div class="doc-card-body">
         This document describes the secure network architecture for a mid-sized organization
         (~100 employees) operating a hybrid cloud/on-premises environment. The design implements
         defense-in-depth through layered firewalls, network segmentation, VPN connectivity,
-        and centralized monitoring — protecting an internet-facing web application alongside
+        and centralized monitoring &mdash; protecting an internet-facing web application alongside
         internal HR and Finance systems.
       </div>
     </div>
-    <div class="doc-card">
-      <div class="doc-card-num">§ 2 — Network Topology</div>
+    <div class="doc-card" style="--ac:#3b82f6">
+      <div class="doc-card-num">&sect; 2 &mdash; Network Topology</div>
       <div class="doc-card-title">Physical &amp; Logical Layout</div>
+      <div class="doc-bg-num">2</div>
       <div class="doc-card-body">
         Traffic enters through an external firewall/IPS and branches three ways: public requests
         reach the DMZ only; internal users pass a second firewall to the core switch and their
@@ -171,31 +206,34 @@
         IPSec VPN to AWS VPC.
       </div>
     </div>
-    <div class="doc-card">
-      <div class="doc-card-num">§ 3 — Security Zones &amp; Trust</div>
+    <div class="doc-card" style="--ac:#a855f7">
+      <div class="doc-card-num">&sect; 3 &mdash; Security Zones &amp; Trust</div>
       <div class="doc-card-title">Zone Trust Model</div>
+      <div class="doc-bg-num">3</div>
       <div class="doc-card-body">
         Zero-trust between zones: all inter-zone traffic denied by default. Restricted Network
         (VLAN 30) requires MFA and role authorization. Guest Network (VLAN 50) is fully isolated
-        — internet-only via captive portal, no path to any internal segment.
+        &mdash; internet-only via captive portal, no path to any internal segment.
       </div>
     </div>
-    <div class="doc-card">
-      <div class="doc-card-num">§ 4 — Threats &amp; Risks</div>
+    <div class="doc-card" style="--ac:#ef4444">
+      <div class="doc-card-num">&sect; 4 &mdash; Threats &amp; Risks</div>
       <div class="doc-card-title">Risk Register Overview</div>
+      <div class="doc-bg-num">4</div>
       <div class="doc-card-body">
         Key identified threats: external intrusion, phishing, lateral movement, ransomware,
         data exfiltration, and unauthorized cloud access. Each is assessed for likelihood and
-        impact, then mapped to one or more mitigating controls (see Part 5 — Threat Matrix).
+        impact, then mapped to one or more mitigating controls (see Part 5 &mdash; Threat Matrix).
       </div>
     </div>
-    <div class="doc-card">
-      <div class="doc-card-num">§ 5 — Controls &amp; Mitigations</div>
+    <div class="doc-card" style="--ac:#22c55e">
+      <div class="doc-card-num">&sect; 5 &mdash; Controls &amp; Mitigations</div>
       <div class="doc-card-title">Security Control Summary</div>
+      <div class="doc-bg-num">5</div>
       <div class="doc-card-body">
         Eight controls deployed in layers: Perimeter Firewall, IDS/IPS, VLAN Segmentation,
         VPN, ACLs, MFA, RBAC, and SIEM. Layered so that failure of any single control does
-        not result in a full breach — defense-in-depth principle.
+        not result in a full breach &mdash; defense-in-depth principle.
       </div>
     </div>
   </div>
