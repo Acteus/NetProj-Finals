@@ -134,10 +134,7 @@
   <div class="section-header">
     <div class="part-label">Part 2</div>
     <h2 class="section-title">Security Controls &amp; Justification</h2>
-    <p class="section-desc">
-      Each control is mapped to the specific risk it mitigates and the industry standard that
-      mandates or recommends its use — reflecting security-by-design practice.
-    </p>
+    <p class="section-desc">Eight controls deployed in layers — each mapped to the risk it mitigates and the standard that mandates it.</p>
   </div>
   <div class="controls-grid" id="controlsGrid"></div>
 </section>
@@ -329,13 +326,11 @@ SECURITY_CONTROLS.forEach(c => {
   controlsGrid.innerHTML += `
     <div class="control-card">
       <div class="control-header">
-        <div>
-          <div class="control-name">${c.control}</div>
-          <div class="control-std">${c.standard}</div>
-        </div>
+        <div class="control-name">${c.control}</div>
+        <span class="layer-badge" style="color:${c.layerColor};background:${c.layerColor}18;border-color:${c.layerColor}40">${c.layer}</span>
       </div>
-      <div class="control-risk-label">Mitigates Risk</div>
-      <div class="control-risk">${c.risk}</div>
+      <div class="control-std">${c.standard}</div>
+      <div class="risk-pill" style="--rc:${c.layerColor}">${c.risk}</div>
       <div class="control-purpose">${c.purpose}</div>
     </div>`;
 });

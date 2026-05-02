@@ -60,56 +60,56 @@ const LAYOUT = {
 const SECURITY_CONTROLS = [
   {
     control: 'Perimeter Firewall',
-    icon: '🔥',
+    layer: 'Perimeter', layerColor: '#ef4444',
     risk: 'Unauthorized external access',
     purpose: 'First line of defense; enforces allow/deny rules on all ingress and egress traffic between the internet and all internal zones. Stateful packet inspection with integrated IPS.',
     standard: 'NIST SP 800-41'
   },
   {
     control: 'IDS / IPS',
-    icon: '🚨',
+    layer: 'Perimeter', layerColor: '#ef4444',
     risk: 'Active intrusion & exploits',
     purpose: 'Inline Intrusion Prevention System (IPS) inspects payload content. Signature-based and anomaly-based detection flags or blocks malicious traffic in real-time.',
     standard: 'ISO 27001 A.12.4'
   },
   {
     control: 'Network Segmentation (VLANs)',
-    icon: '🧱',
+    layer: 'Network', layerColor: '#3b82f6',
     risk: 'Lateral movement after breach',
     purpose: 'Divides the network into isolated security zones (DMZ, Internal, Restricted, Management, Guest). Limits blast radius — a compromise in one zone cannot propagate freely.',
     standard: 'PCI-DSS 1.3'
   },
   {
     control: 'VPN Gateway (IPSec)',
-    icon: '🔒',
+    layer: 'Remote Access', layerColor: '#8b5cf6',
     risk: 'Insecure remote access & data in transit',
     purpose: 'Provides encrypted tunnels for remote employees and site-to-cloud connectivity. Certificate-based authentication + MFA enforced at the gateway level.',
     standard: 'NIST SP 800-77'
   },
   {
     control: 'Access Control Lists (ACLs)',
-    icon: '📋',
+    layer: 'Network', layerColor: '#3b82f6',
     risk: 'Excessive privilege / unauthorized access',
     purpose: 'Stateless packet filters on the core switch and internal firewall. Whitelist approach — only explicitly permitted traffic is allowed between zones.',
     standard: 'CIS Control 6'
   },
   {
     control: 'Multi-Factor Authentication (MFA)',
-    icon: '🔑',
+    layer: 'Identity', layerColor: '#22c55e',
     risk: 'Credential theft / account takeover',
     purpose: 'TOTP or hardware token required for all admin access (Management Network), VPN connections, and cloud console access. Reduces risk from stolen passwords.',
     standard: 'NIST SP 800-63B'
   },
   {
     control: 'RBAC (Role-Based Access Control)',
-    icon: '👥',
+    layer: 'Identity', layerColor: '#22c55e',
     risk: 'Insider threat / data exfiltration',
     purpose: 'Principle of least privilege applied to all systems. HR/Finance staff may only access Restricted Network resources relevant to their role. Admins have dedicated accounts.',
     standard: 'ISO 27001 A.9'
   },
   {
     control: 'Logging & SIEM',
-    icon: '📊',
+    layer: 'Monitoring', layerColor: '#f97316',
     risk: 'Undetected incidents / forensic blindspot',
     purpose: 'Centralized log aggregation (syslog → SIEM). Firewall, IDS, and authentication events correlated for anomaly detection. Alerts on suspicious patterns in real-time.',
     standard: 'NIST SP 800-92'
