@@ -258,11 +258,47 @@
   <div class="section-header">
     <div class="part-label">Part 4</div>
     <h2 class="section-title">Implementation Plan</h2>
-    <p class="section-desc">
-      A phased 5-week rollout plan explaining <em>how</em> the design will be implemented —
-      from IP addressing through VLAN setup, VPN configuration, RBAC, and live monitoring.
-    </p>
+    <p class="section-desc">Six phases over 5 weeks &mdash; from IP addressing to live monitoring.</p>
   </div>
+
+  <!-- Gantt Chart -->
+  <h3 class="sub-heading">Project Timeline</h3>
+  <div class="gantt" aria-label="Implementation Gantt chart">
+    <div class="gantt-header">
+      <div class="gantt-hcell">Phase</div>
+      <div class="gantt-hcell">Week 1</div>
+      <div class="gantt-hcell">Week 2</div>
+      <div class="gantt-hcell">Week 3</div>
+      <div class="gantt-hcell">Week 4</div>
+      <div class="gantt-hcell">Week 5</div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Phase 1</div>
+      <div class="gantt-bar" style="grid-column:2/3;--gc:#ef4444">Network Zoning</div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Phase 2</div>
+      <div class="gantt-bar" style="grid-column:3/4;--gc:#f97316">Firewall Rules</div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Phase 3</div>
+      <div class="gantt-bar" style="grid-column:3/5;--gc:#eab308">VLAN &amp; Segmentation</div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Phase 4</div>
+      <div class="gantt-bar" style="grid-column:4/5;--gc:#22c55e">VPN Config</div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Phase 5</div>
+      <div class="gantt-bar" style="grid-column:5/6;--gc:#3b82f6">RBAC &amp; Identity</div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Phase 6</div>
+      <div class="gantt-bar" style="grid-column:5/7;--gc:#a855f7">Logging &amp; SIEM</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">Phase Details</h3>
   <div class="timeline" id="timeline"></div>
 </section>
 
@@ -355,20 +391,23 @@ SECURITY_CONTROLS.forEach(c => {
     </div>`;
 });
 
-/* ── BUILD TIMELINE ───── */
 const timeline = document.getElementById('timeline');
 IMPL_STEPS.forEach((p, i) => {
   timeline.innerHTML += `
     <div class="phase-card">
       <div class="phase-dot">
         <div class="phase-circle${i === 0 ? ' active' : ''}" style="background:${p.color};border-color:${p.color}"></div>
-        <div class="phase-dur">${p.duration}</div>
       </div>
       <div class="phase-body">
-        <div class="phase-label" style="color:${p.color}">${p.phase}</div>
-        <div class="phase-title">${p.title}</div>
+        <div class="phase-header">
+          <div>
+            <span class="phase-label" style="color:${p.color}">${p.phase}</span>
+            <span class="phase-title">${p.title}</span>
+          </div>
+          <span class="phase-week-badge" style="color:${p.color};background:${p.color}18;border-color:${p.color}40">${p.duration}</span>
+        </div>
         <div class="phase-tasks">
-          ${p.tasks.map(t => `<div class="phase-task">${t}</div>`).join('')}
+          ${p.tasks.map(t => `<div class="phase-task"><span class="task-dot" style="background:${p.color}"></span>${t}</div>`).join('')}
         </div>
       </div>
     </div>`;
