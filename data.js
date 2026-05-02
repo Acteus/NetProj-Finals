@@ -38,23 +38,23 @@ const LINKS = [
 ];
 
 const LAYOUT = {
-  // Row 1 — top (DMZ + Cloud Services)
-  3:  { nx: 0.32, ny: 0.08 },
-  13: { nx: 0.90, ny: 0.08 },
+  // Row 1 — top (DMZ branch from External FW)
+  3:  { nx: 0.32, ny: 0.07 },
   // Row 2 — main traffic path
-  1:  { nx: 0.04, ny: 0.40 },
-  2:  { nx: 0.18, ny: 0.40 },
-  4:  { nx: 0.32, ny: 0.40 },
-  5:  { nx: 0.50, ny: 0.40 },
-  6:  { nx: 0.68, ny: 0.20 },
-  7:  { nx: 0.90, ny: 0.40 },
+  1:  { nx: 0.04, ny: 0.42 },
+  2:  { nx: 0.18, ny: 0.42 },
+  4:  { nx: 0.32, ny: 0.42 },
+  5:  { nx: 0.50, ny: 0.42 },
+  6:  { nx: 0.70, ny: 0.22 },
+  7:  { nx: 0.92, ny: 0.42 },
   // Row 3 — secondary segments
-  8:  { nx: 0.68, ny: 0.60 },
-  9:  { nx: 0.50, ny: 0.68 },
+  8:  { nx: 0.70, ny: 0.62 },
+  9:  { nx: 0.50, ny: 0.70 },
   10: { nx: 0.18, ny: 0.68 },
-  // Row 4 — cloud
-  11: { nx: 0.50, ny: 0.90 },
-  12: { nx: 0.70, ny: 0.90 },
+  // Row 4 — cloud (all three cloud nodes together)
+  11: { nx: 0.36, ny: 0.90 },
+  12: { nx: 0.56, ny: 0.90 },
+  13: { nx: 0.76, ny: 0.90 },
 };
 
 const SECURITY_CONTROLS = [

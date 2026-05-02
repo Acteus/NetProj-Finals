@@ -391,6 +391,51 @@ tr:hover td { background: var(--bg-card-hover); }
 }
 .assumption-icon { flex-shrink: 0; font-size: 16px; margin-top: 1px; }
 
+/* ── FLOW STRIP ─────────────────────────────────────────── */
+.flow-paths {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 12px;
+}
+.flow-path {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 16px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.flow-path-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-muted);
+  min-width: 150px; flex-shrink: 0;
+}
+.flow-strip {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+}
+.flow-node {
+  font-size: 12px; font-weight: 700;
+  color: var(--fc, #e8f0f7);
+  padding: 4px 10px; border-radius: 6px;
+  background: color-mix(in srgb, var(--fc, #e8f0f7) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fc, #e8f0f7) 25%, transparent);
+}
+.flow-arrow { color: var(--text-muted); font-size: 14px; }
+.flow-caption {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 28px; line-height: 1.6;
+}
+.sub-heading {
+  font-size: 13px; font-weight: 700; color: var(--text-secondary);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.sub-desc {
+  font-size: 13px; color: var(--text-muted);
+  margin-bottom: 14px; margin-top: -8px;
+}
+.trust-badge {
+  margin-left: auto; font-size: 11px; font-weight: 700;
+  padding: 2px 8px; border-radius: 4px;
+  border: 1px solid; flex-shrink: 0;
+}
+
 /* ── FOOTER ─────────────────────────────────────────────── */
 .footer {
   border-top: 1px solid var(--border);

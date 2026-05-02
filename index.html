@@ -47,18 +47,56 @@
   <div class="section-header">
     <div class="part-label">Part 1</div>
     <h2 class="section-title">Network Security Architecture Design</h2>
-    <p class="section-desc">
-      A layered security architecture with distinct trust zones, perimeter and internal firewalls,
-      a DMZ for public-facing services, and a hybrid cloud extension via VPN.
-    </p>
   </div>
 
+  <!-- Traffic Flow Paths -->
+  <div class="flow-paths">
+    <div class="flow-path">
+      <span class="flow-path-label">Public Web Traffic</span>
+      <div class="flow-strip">
+        <div class="flow-node" style="--fc:#ef4444">Internet</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node" style="--fc:#dc2626">External Firewall</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node" style="--fc:#f97316">DMZ (Web / Proxy)</div>
+      </div>
+    </div>
+    <div class="flow-path">
+      <span class="flow-path-label">Internal Network Traffic</span>
+      <div class="flow-strip">
+        <div class="flow-node" style="--fc:#dc2626">External Firewall</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node" style="--fc:#dc2626">Internal Firewall</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node" style="--fc:#3b82f6">Core Switch</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node" style="--fc:#6b7280">Internal / Restricted / Mgmt / Guest</div>
+      </div>
+    </div>
+    <div class="flow-path">
+      <span class="flow-path-label">Cloud / VPN Traffic</span>
+      <div class="flow-strip">
+        <div class="flow-node" style="--fc:#dc2626">External Firewall</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node" style="--fc:#8b5cf6">VPN Gateway</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node" style="--fc:#0ea5e9">Cloud Provider (AWS)</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node" style="--fc:#2563eb">Cloud VPC</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node" style="--fc:#16a34a">Cloud Services</div>
+      </div>
+    </div>
+  </div>
+  <p class="flow-caption">All traffic enters through the External Firewall. It branches into three paths: public requests reach the DMZ only, internal users traverse a second firewall to their VLAN, and cloud traffic is tunnelled over IPSec VPN.</p>
+
   <!-- Zone Cards -->
-  <div class="part-label" style="margin-bottom:14px">1A — Security Zones &amp; Trust Levels</div>
+  <h3 class="sub-heading">1A &mdash; Security Zones</h3>
   <div class="zone-grid" id="zoneGrid"></div>
 
   <!-- Diagram -->
-  <div class="part-label" style="margin-bottom:14px">1B — Interactive Logical Network Diagram</div>
+  <h3 class="sub-heading" style="margin-top:36px">1B &mdash; Logical Network Diagram</h3>
+  <p class="sub-desc">Click any node to inspect its IP range, role, and connections. Hover to highlight its traffic paths. Drag to reposition.</p>
   <div class="diagram-wrap">
     <div class="diagram-toolbar">
       <div class="diagram-title-block">
@@ -66,9 +104,9 @@
         <p>Click a node for details · Drag to reposition · Scroll to zoom</p>
       </div>
       <div class="diagram-controls">
-        <button class="btn btn-accent" id="fitBtn">⊡ Fit</button>
-        <button class="btn" id="resetViewBtn">↺ Reset View</button>
-        <button class="btn" id="resetLayoutBtn">⊞ Reset Layout</button>
+        <button class="btn btn-accent" id="fitBtn">&#8862; Fit</button>
+        <button class="btn" id="resetViewBtn">&#8635; Reset View</button>
+        <button class="btn" id="resetLayoutBtn">&#8862; Reset Layout</button>
       </div>
     </div>
     <div class="diagram-body">
@@ -249,14 +287,17 @@
 <script>
 /* ── BUILD ZONE GRID ───── */
 const zoneGrid = document.getElementById('zoneGrid');
+const trustLabel = ['Untrusted', 'Low', 'Low', 'Medium', 'High', 'Critical'];
+const trustColor = ['#ef4444', '#f97316', '#f97316', '#eab308', '#22c55e', '#a855f7'];
 ZONES.forEach(z => {
-  const trust = '■'.repeat(z.trust) + '□'.repeat(5 - z.trust);
+  const tl = trustLabel[z.trust];
+  const tc = trustColor[z.trust];
   zoneGrid.innerHTML += `
     <div class="zone-card" style="border-left-color:${z.color}">
       <div class="zone-card-top">
         <span class="zone-dot" style="background:${z.color}"></span>
         <span class="zone-name">${z.zone}</span>
-        <span class="zone-trust" title="Trust level ${z.trust}/5">${trust}</span>
+        <span class="trust-badge" style="color:${tc};background:${tc}18;border-color:${tc}40">${tl}</span>
       </div>
       <div class="zone-meta">
         ${z.vlan !== 'N/A' ? `<span class="zone-tag">VLAN ${z.vlan}</span>` : ''}
