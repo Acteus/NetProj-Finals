@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Secure Hybrid Network Architecture — Finals Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Design and Implementation of a Secure Network Architecture for a Mid-Sized Organization — Network Security Final Project" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="data.js"></script>
+</head>
+<body>
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="#hero" class="nav-brand">
+    <span class="logo-icon"></span>
+    SecureNet
+  </a>
+  <ul class="nav-links">
+    <li><a href="#part1">Architecture</a></li>
+    <li><a href="#part2">Controls</a></li>
+    <li><a href="#part3">Documentation</a></li>
+    <li><a href="#part4">Implementation</a></li>
+    <li><a href="#part5">Threats</a></li>
+  </ul>
+  <span class="nav-badge">Network Security Finals</span>
+</nav>
+
+<div class="page">
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section id="hero" class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow fade-up">Final Project · Network Security</div>
+  <h1 class="fade-up fade-up-1">Secure Hybrid Network<br>Architecture Design</h1>
+  <p class="hero-sub fade-up fade-up-2">
+    Designing, documenting, and simulating a secure network security architecture
+    for a mid-sized organization — covering segmentation, controls, and implementation planning.
+  </p>
+  <div class="hero-meta fade-up fade-up-3">
+    <span>100 Employees</span>
+    <span>Hybrid Cloud / On-Prem</span>
+    <span>Internet-Facing Web App</span>
+    <span>HR &amp; Finance Systems</span>
+  </div>
+  <div class="hero-stats fade-up fade-up-4">
+    <div class="stat-card"><div class="stat-val">6</div><div class="stat-lbl">Security Zones</div></div>
+    <div class="stat-card"><div class="stat-val">8</div><div class="stat-lbl">Security Controls</div></div>
+    <div class="stat-card"><div class="stat-val">5</div><div class="stat-lbl">VLANs</div></div>
+    <div class="stat-card"><div class="stat-val">6</div><div class="stat-lbl">Impl. Phases</div></div>
+    <div class="stat-card"><div class="stat-val">13</div><div class="stat-lbl">Network Nodes</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PART 1 — ARCHITECTURE ─────────────────────────────── -->
+<section id="part1" class="section">
+  <div class="section-header">
+    <div class="part-label">Part 1</div>
+    <h2 class="section-title">Network Security Architecture Design</h2>
+    <p class="section-desc">
+      A layered security architecture with distinct trust zones, perimeter and internal firewalls,
+      a DMZ for public-facing services, and a hybrid cloud extension via VPN.
+    </p>
+  </div>
+
+  <!-- Zone Cards -->
+  <div class="part-label" style="margin-bottom:14px">1A — Security Zones &amp; Trust Levels</div>
+  <div class="zone-grid" id="zoneGrid"></div>
+
+  <!-- Diagram -->
+  <div class="part-label" style="margin-bottom:14px">1B — Interactive Logical Network Diagram</div>
+  <div class="diagram-wrap">
+    <div class="diagram-toolbar">
+      <div class="diagram-title-block">
+        <h3>Logical Network Topology</h3>
+        <p>Click a node for details · Drag to reposition · Scroll to zoom</p>
+      </div>
+      <div class="diagram-controls">
+        <button class="btn btn-accent" id="fitBtn">⊡ Fit</button>
+        <button class="btn" id="resetViewBtn">↺ Reset View</button>
+        <button class="btn" id="resetLayoutBtn">⊞ Reset Layout</button>
+      </div>
+    </div>
+    <div class="diagram-body">
+      <div id="network" aria-label="Network diagram"></div>
+      <aside class="diagram-legend">
+        <div>
+          <div class="legend-title">Zones</div>
+          <div class="legend-items" id="legendItems"></div>
+        </div>
+        <div>
+          <div class="legend-title" style="margin-bottom:10px">Node Details</div>
+          <div class="node-info" id="diagramInfo">
+            <div class="node-info-hint">Click any node to see its details, IP address range, and connections.</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PART 2 — SECURITY CONTROLS ────────────────────────── -->
+<section id="part2" class="section">
+  <div class="section-header">
+    <div class="part-label">Part 2</div>
+    <h2 class="section-title">Security Controls &amp; Justification</h2>
+    <p class="section-desc">
+      Each control is mapped to the specific risk it mitigates and the industry standard that
+      mandates or recommends its use — reflecting security-by-design practice.
+    </p>
+  </div>
+  <div class="controls-grid" id="controlsGrid"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PART 3 — DOCUMENTATION ────────────────────────────── -->
+<section id="part3" class="section">
+  <div class="section-header">
+    <div class="part-label">Part 3</div>
+    <h2 class="section-title">Network Security Architecture Document</h2>
+    <p class="section-desc">
+      Formal documentation mirroring enterprise "living documentation" standards,
+      covering all required sections for a production-grade security architecture.
+    </p>
+  </div>
+
+  <div class="doc-grid">
+    <div class="doc-card">
+      <div class="doc-card-num">§ 1 — Executive Summary</div>
+      <div class="doc-card-title">Overview &amp; Objectives</div>
+      <div class="doc-card-body">
+        This document describes the secure network architecture for a mid-sized organization
+        (~100 employees) operating a hybrid cloud/on-premises environment. The design implements
+        defense-in-depth through layered firewalls, network segmentation, VPN connectivity,
+        and centralized monitoring — protecting an internet-facing web application alongside
+        internal HR and Finance systems.
+      </div>
+    </div>
+    <div class="doc-card">
+      <div class="doc-card-num">§ 2 — Network Topology</div>
+      <div class="doc-card-title">Physical &amp; Logical Layout</div>
+      <div class="doc-card-body">
+        Traffic enters through an external firewall/IPS, reaches the DMZ (Web/Reverse Proxy),
+        then passes a second internal firewall to reach the core switch. The core switch routes
+        tagged VLAN traffic to four segments: Internal (VLAN 20), Restricted (VLAN 30),
+        Management (VLAN 40), and Guest (VLAN 50). A VPN gateway connects on-prem to AWS VPC
+        via an IPSec tunnel.
+      </div>
+    </div>
+    <div class="doc-card">
+      <div class="doc-card-num">§ 3 — Security Zones &amp; Trust</div>
+      <div class="doc-card-title">Zone Trust Model</div>
+      <div class="doc-card-body">
+        Zero-trust model applied between zones: all inter-zone traffic is denied by default.
+        The Restricted Network (VLAN 30) carries the highest trust requirement — only role-authorized
+        users may access it after MFA. The Guest Network (VLAN 50) is fully isolated, routing
+        internet-only through a captive portal with no path to internal segments.
+      </div>
+    </div>
+    <div class="doc-card">
+      <div class="doc-card-num">§ 5 — Controls &amp; Mitigations</div>
+      <div class="doc-card-title">Security Control Summary</div>
+      <div class="doc-card-body">
+        Eight security controls are deployed in combination: Perimeter Firewall, IDS/IPS,
+        VLAN Segmentation, VPN, ACLs, MFA, RBAC, and SIEM. Each addresses one or more
+        identified risks. Controls are layered so that failure of a single control does not
+        result in a full breach — a principle of defense-in-depth.
+      </div>
+    </div>
+    <div class="doc-card">
+      <div class="doc-card-num">§ 6 — Assumptions &amp; Limitations</div>
+      <div class="doc-card-title">Scope Boundaries</div>
+      <div class="doc-card-body">
+        This architecture assumes no actual production deployment is performed. Packet Tracer
+        or Draw.io diagrams serve as simulation artifacts. Physical hardware selection
+        (specific firewall model, switch SKU) is out of scope. Penetration testing and
+        active exploit validation are excluded per project requirements.
+      </div>
+    </div>
+    <div class="doc-card">
+      <div class="doc-card-num">§ 4 — Threats &amp; Risks</div>
+      <div class="doc-card-title">Risk Register Overview</div>
+      <div class="doc-card-body">
+        Key identified threats include external intrusion, phishing attacks, lateral movement
+        post-breach, ransomware, data exfiltration, and unauthorized cloud access. Each threat
+        is assessed for likelihood and impact, then mapped to one or more mitigating security
+        controls deployed within the architecture (see Part 5 — Threat Matrix).
+      </div>
+    </div>
+  </div>
+
+  <!-- Assumptions list -->
+  <div class="part-label" style="margin-top:36px;margin-bottom:14px">§ 6 — Assumptions &amp; Limitations (Detail)</div>
+  <div class="assumption-list">
+    <div class="assumption-item"><span class="assumption-icon">+</span>The organization uses Active Directory (or equivalent LDAP) for identity management.</div>
+    <div class="assumption-item"><span class="assumption-icon">+</span>All endpoints run an organization-managed OS image with up-to-date patches.</div>
+    <div class="assumption-item"><span class="assumption-icon">+</span>Cloud workloads are hosted on AWS; architecture adapts to GCP/Azure with minor changes.</div>
+    <div class="assumption-item"><span class="assumption-icon">+</span>Physical cabling and hardware procurement is handled separately by IT operations.</div>
+    <div class="assumption-item"><span class="assumption-icon">~</span>Actual firewall rule tuning requires live traffic baseline — default rules are conservative.</div>
+    <div class="assumption-item"><span class="assumption-icon">~</span>SIEM alert tuning will generate false positives initially; a 2-week baselining period is expected.</div>
+    <div class="assumption-item"><span class="assumption-icon">—</span>No penetration testing or active exploitation is performed as part of this project.</div>
+    <div class="assumption-item"><span class="assumption-icon">—</span>Physical security controls (badge access, CCTV, server room locks) are out of scope.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PART 4 — IMPLEMENTATION ───────────────────────────── -->
+<section id="part4" class="section">
+  <div class="section-header">
+    <div class="part-label">Part 4</div>
+    <h2 class="section-title">Implementation Plan</h2>
+    <p class="section-desc">
+      A phased 5-week rollout plan explaining <em>how</em> the design will be implemented —
+      from IP addressing through VLAN setup, VPN configuration, RBAC, and live monitoring.
+    </p>
+  </div>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PART 5 — THREATS ──────────────────────────────────── -->
+<section id="part5" class="section">
+  <div class="section-header">
+    <div class="part-label">Part 5</div>
+    <h2 class="section-title">Threat &amp; Risk Matrix</h2>
+    <p class="section-desc">
+      Identified threats mapped to likelihood, potential impact, and the specific security controls
+      deployed to mitigate them. Each group member should be prepared to discuss any row in depth.
+    </p>
+  </div>
+  <div class="table-wrap">
+    <table id="threatsTable">
+      <thead>
+        <tr>
+          <th>Threat</th>
+          <th>Likelihood</th>
+          <th>Impact</th>
+          <th>Mitigating Control(s)</th>
+        </tr>
+      </thead>
+      <tbody id="threatsBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────── -->
+<footer class="footer">
+  <p><strong>Secure Hybrid Network Architecture</strong> — Network Security Final Project</p>
+  <p style="margin-top:6px">Design and Implementation of a Secure Network Architecture for a Mid-Sized Organization</p>
+</footer>
+
+</div><!-- /page -->
+
+<script>
+/* ── BUILD ZONE GRID ───── */
+const zoneGrid = document.getElementById('zoneGrid');
+ZONES.forEach(z => {
+  const trust = '■'.repeat(z.trust) + '□'.repeat(5 - z.trust);
+  zoneGrid.innerHTML += `
+    <div class="zone-card" style="border-left-color:${z.color}">
+      <div class="zone-card-top">
+        <span class="zone-dot" style="background:${z.color}"></span>
+        <span class="zone-name">${z.zone}</span>
+        <span class="zone-trust" title="Trust level ${z.trust}/5">${trust}</span>
+      </div>
+      <div class="zone-meta">
+        ${z.vlan !== 'N/A' ? `<span class="zone-tag">VLAN ${z.vlan}</span>` : ''}
+        <span class="zone-tag">${z.subnet}</span>
+      </div>
+      <div class="zone-desc">${z.description}</div>
+    </div>`;
+});
+
+/* ── BUILD LEGEND ───── */
+const legendItems = document.getElementById('legendItems');
+const groups = [...new Map(NODES.map(n => [n.group, { group: n.group, color: n.color, icon: n.icon }])).values()];
+const groupLabels = {
+  external:'Internet (External)', security:'Security Devices', dmz:'DMZ',
+  core:'Core Network', internal:'Internal', restricted:'Restricted',
+  management:'Management', guest:'Guest', cloud:'Cloud'
+};
+groups.forEach(g => {
+  legendItems.innerHTML += `
+    <div class="legend-item">
+      <span class="legend-dot" style="background:${g.color}"></span>
+      ${groupLabels[g.group] || g.group}
+    </div>`;
+});
+
+/* ── BUILD CONTROLS GRID ───── */
+const controlsGrid = document.getElementById('controlsGrid');
+SECURITY_CONTROLS.forEach(c => {
+  controlsGrid.innerHTML += `
+    <div class="control-card">
+      <div class="control-header">
+        <div>
+          <div class="control-name">${c.control}</div>
+          <div class="control-std">${c.standard}</div>
+        </div>
+      </div>
+      <div class="control-risk-label">Mitigates Risk</div>
+      <div class="control-risk">${c.risk}</div>
+      <div class="control-purpose">${c.purpose}</div>
+    </div>`;
+});
+
+/* ── BUILD TIMELINE ───── */
+const timeline = document.getElementById('timeline');
+IMPL_STEPS.forEach((p, i) => {
+  timeline.innerHTML += `
+    <div class="phase-card">
+      <div class="phase-dot">
+        <div class="phase-circle${i === 0 ? ' active' : ''}" style="background:${p.color};border-color:${p.color}"></div>
+        <div class="phase-dur">${p.duration}</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-label" style="color:${p.color}">${p.phase}</div>
+        <div class="phase-title">${p.title}</div>
+        <div class="phase-tasks">
+          ${p.tasks.map(t => `<div class="phase-task">${t}</div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+});
+
+/* ── BUILD THREATS TABLE ───── */
+const threatsBody = document.getElementById('threatsBody');
+const likeliBadge = { High: 'badge-high', Medium: 'badge-medium', Low: 'badge-low' };
+const impactBadge = { Critical: 'badge-critical', High: 'badge-high', Medium: 'badge-medium', Low: 'badge-low' };
+THREATS.forEach(t => {
+  threatsBody.innerHTML += `
+    <tr>
+      <td style="font-weight:600">${t.threat}</td>
+      <td><span class="badge ${likeliBadge[t.likelihood]}">${t.likelihood}</span></td>
+      <td><span class="badge ${impactBadge[t.impact]}">${t.impact}</span></td>
+      <td style="color:var(--text-secondary)">${t.control}</td>
+    </tr>`;
+});
+
+/* ── NAV ACTIVE STATE ───── */
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section[id]');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => io.observe(s));
+</script>
+
+<!-- D3 diagram runs after DOM is ready -->
+<script src="diagram.js"></script>
+</body>
+</html>

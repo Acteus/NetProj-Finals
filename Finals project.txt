@@ -1,0 +1,140 @@
+PROJECT TITLE: Design and Implementation of a Secure Network Architecture for a Mid-Sized Organization
+
+ 
+Project Overview
+
+In this project, students will design, document, and simulate a secure network security architecture for a mid-sized organization. The project covers architecture design, security controls, network segmentation, documentation, and implementation planning.
+
+This project is inspired by real enterprise architecture and security documentation practices used in organizations
+
+ 
+Learning Objectives
+
+By the end of the project, groups will be able to:
+
+1. Design a secure network architecture with proper segmentation and controls
+2. Apply network security principles
+3. Produce professional security documentation
+4. Explain how security controls are implemented and enforced
+5. Demonstrate the design through simulation or diagrams
+ 
+Project Scenario
+
+You are hired as a Network Security Consultant for a mid-sized company with:
+
+• 100 employees
+• Internet-facing web application
+• Internal HR and Finance systems
+• Hybrid setup (on-prem + cloud optional)
+Your task is to design and document a secure network security architecture that protects company data, users, and systems.
+
+ 
+Project Scope
+
+In-Scope
+
+• Network Security Architecture Diagram
+• Security Zone Design
+• Security Controls
+• Network Segmentation
+• Implementation Plan
+Out-of-Scope
+
+• Actual production deployment
+• Exploitation or penetration testing
+ 
+PART 1: Network Security Architecture Design
+
+A. Network Zones
+
+Students must define and design the following zones:
+
+• Internet
+• DMZ (Web servers, reverse proxy)
+• Internal Network (Users, printers)
+• Restricted Network (HR, Finance, Database)
+• Management Network (Admins only)
+• Guest Network
+ 
+B. Architecture Diagram (Required Output)
+
+Students must submit:
+
+• Logical Network Diagram (Visio / Draw.io / Packet Tracer)
+• Clearly labeled security zones
+• Security devices and traffic flow arrows
+ 
+PART 2: Security Controls & Justification
+
+Students must document what security control is used and why:
+
+Control
+
+Purpose
+
+Ex. Firewall
+
+ 
+
+IDS/IPS
+
+ 
+
+Network Segmentation
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Mapping security controls to risks reflects industry security-by-design practice.
+PART 3: Documentation (Major Graded Output)
+
+A. Network Security Architecture Document
+
+Students must submit a formal document containing:
+
+1. Executive Summary
+2. Network Topology Description
+3. Security Zones & Trust Levels
+4. Threats and Risks
+5. Security Controls & Mitigations
+6. Assumptions and Limitations
+This mirrors enterprise “living documentation” standards.
+
+ 
+ 
+
+PART 4: Implementation Plan
+
+Students must explain HOW the design will be implemented (no real deployment required).
+
+Implementation Steps
+
+1. Network zoning and IP addressing
+2. Firewall rule creation
+3. VLAN and segmentation setup
+4. VPN configuration
+5. User access control (RBAC)
+6. Logging and monitoring setup
+Implementation planning mirrors real-world network operations and security governance.
+
+ 
+PART 5: Simulation / Demonstration
+
+(Each member of the group should highlight and prepared to answer networking questions related to the documentation)
