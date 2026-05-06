@@ -36,14 +36,23 @@
 
   const defs = svg.append('defs');
 
-  // Arrow marker
+  // Arrow markers — one for each end (bidirectional traffic)
+  const arrowPath = 'M0,-4L8,0L0,4';
   defs.append('marker')
-    .attr('id', 'arrow')
+    .attr('id', 'arrow-end')
     .attr('viewBox', '0 -4 8 8')
     .attr('refX', 8).attr('refY', 0)
     .attr('markerWidth', 5).attr('markerHeight', 5)
     .attr('orient', 'auto')
-    .append('path').attr('d', 'M0,-4L8,0L0,4').attr('fill', '#4d6477');
+    .append('path').attr('d', arrowPath).attr('fill', '#4d6477');
+
+  defs.append('marker')
+    .attr('id', 'arrow-start')
+    .attr('viewBox', '0 -4 8 8')
+    .attr('refX', 0).attr('refY', 0)
+    .attr('markerWidth', 5).attr('markerHeight', 5)
+    .attr('orient', 'auto-start-reverse')
+    .append('path').attr('d', arrowPath).attr('fill', '#4d6477');
 
   // Glow filter
   const filter = defs.append('filter').attr('id', 'node-glow').attr('x', '-50%').attr('y', '-50%').attr('width', '200%').attr('height', '200%');
@@ -61,7 +70,9 @@
   // Links
   const linkSel = vp.append('g').selectAll('line').data(linkData).join('line')
     .attr('stroke', '#1e3a52').attr('stroke-opacity', 0.9)
-    .attr('stroke-width', 1.5).attr('marker-end', 'url(#arrow)');
+    .attr('stroke-width', 1.5)
+    .attr('marker-end',   'url(#arrow-end)')
+    .attr('marker-start', 'url(#arrow-start)');
 
   // Link labels
   const linkLblSel = vp.append('g').selectAll('text').data(linkData).join('text')
@@ -136,7 +147,8 @@
 
   function render() {
     linkSel.each(function (d) {
-      const s = along(d.source.x, d.source.y, d.target.x, d.target.y, nodeR + 2);
+      // Push endpoints back further from node edge to make room for both arrowheads
+      const s = along(d.source.x, d.source.y, d.target.x, d.target.y, nodeR + 10);
       const t = along(d.target.x, d.target.y, d.source.x, d.source.y, nodeR + 10);
       d3.select(this).attr('x1', s.x).attr('y1', s.y).attr('x2', t.x).attr('y2', t.y);
     });
